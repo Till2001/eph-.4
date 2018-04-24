@@ -9,6 +9,7 @@ public class Krebs extends Akteur{
 	public Krebs(){
 		super();
 		setzeBild("/basiX/images/crab.png");
+		
 	}
 	
 	

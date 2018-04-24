@@ -58,7 +58,8 @@ public class Welt {
 
 	public void keypress() {
 		if(t.wurdeGedrueckt()) {
-			switch((int)t.holeZeichen()) {
+			t.holeZeichen();
+			switch((int)t.aktuellesZeichen()) {
 			case 37:
 				a[0].turn('l');
 				break;
@@ -72,6 +73,9 @@ public class Welt {
 			case 40 :
 				a[0].zurueck();
 				c++;
+				break;
+			default:
+				Dialog.info("", ""+(int)t.aktuellesZeichen());
 				break;
 			}
 		}

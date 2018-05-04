@@ -195,10 +195,10 @@ public class Stift {
 		new Thread() {
 			public void run() {
 				while (true) {
-					if (Stift.this.syncanforderungvorhanden
-							&& System.currentTimeMillis() - letztesSync > Stift.this.dsync) {
+					if (Stift.syncanforderungvorhanden
+							&& System.currentTimeMillis() - letztesSync > Stift.dsync) {
 						Toolkit.getDefaultToolkit().sync();
-						Stift.this.syncanforderungvorhanden = false;
+						Stift.syncanforderungvorhanden = false;
 						letztesSync = System.currentTimeMillis();
 						System.out.println("sync");
 					}

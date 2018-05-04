@@ -17,7 +17,7 @@ public class Akteur {
 	public Akteur() {
 		xPos = -500;
 		yPos = -500;
-		zRichtung = Hilfe.zufall(0, 360);
+		zRichtung = 90;
 		zGeschwindigkeit = 10;
 		zBild = new Bild("/basiX/images/greenfoot.png");
 		zBild.setzeMitMausVerschiebbar(true);
@@ -85,13 +85,13 @@ public class Akteur {
 		return xPos>w.fenster().breite()-zBild.breite()||yPos>w.fenster().hoehe()-zBild.hoehe()||xPos<0||yPos<0;
 	}
 
-//	public boolean binDa() {
-//		return angekommen;
-//	}
-//
-//	public void setBinDa(boolean pDa){
-//		angekommen=pDa;
-//	}
+	public boolean binDa() {
+		return angekommen;
+	}
+
+	public void setBinDa(boolean pDa){
+		angekommen=pDa;
+	}
 
 	public void bewegeAuf(int px, int py) {
 		if (!angekommen) {
@@ -134,6 +134,7 @@ public class Akteur {
 		zeige();
 	}
 	
+	
 
 	public void setzeGeschwindigkeit(int pGeschwindigkeit){
 		zGeschwindigkeit=pGeschwindigkeit;
@@ -151,10 +152,15 @@ public class Akteur {
 
 	public void bewege() {
 		Hilfe.kurzePause();
-		xPos = (int) (xPos + Math.round(zGeschwindigkeit
-				* Hilfe.cosinus(zRichtung)));
-		yPos = (int) (yPos - Math.round(zGeschwindigkeit
-				* Hilfe.sinus(zRichtung)));
+		xPos = (int) (xPos + Math.round(zGeschwindigkeit * Hilfe.cosinus(zRichtung)));
+		yPos = (int) (yPos - Math.round(zGeschwindigkeit * Hilfe.sinus(zRichtung)));
+		zeige();
+	}
+	
+	public void ruecklaufen() {
+		Hilfe.kurzePause();
+		xPos = (int) (xPos + Math.round(-zGeschwindigkeit * Hilfe.cosinus(zRichtung)));
+		yPos = (int) (yPos - Math.round(-zGeschwindigkeit * Hilfe.sinus(zRichtung)));
 		zeige();
 	}
 
@@ -183,24 +189,6 @@ public class Akteur {
 
 	}
 
-	public void zurueck() {
-		Hilfe.kurzePause();
-		xPos = (int) (xPos + Math.round(-zGeschwindigkeit * Hilfe.cosinus(zRichtung)));
-		yPos = (int) (yPos - Math.round(-zGeschwindigkeit * Hilfe.sinus(zRichtung)));
-		zeige();
-		
-	}
 
-	public void turn(char c) {
-		switch(c) {
-		case 'l':
-			this.dreheUm(5);
-			break;
-		case 'r':
-			this.dreheUm(-5);
-			break;
-		}
-		
-	}
 
 }

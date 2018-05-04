@@ -26,8 +26,6 @@ public class Welt {
 	public void play() {
 		while (!ende) {
 			Hilfe.kurzePause();
-			this.keypress();
-			this.anim();
 			if (f.istSichtbar() == false) {
 				ende = true;
 			}
@@ -60,29 +58,16 @@ public class Welt {
 		if(t.wurdeGedrueckt()) {
 			t.holeZeichen();
 			switch((int)t.aktuellesZeichen()) {
-			case 37:
-				a[0].turn('l');
-				break;
-			case 38 :
-				a[0].bewege();
-				c++;
-				break;
-			case 39:
-				a[0].turn('r');
-				break;
-			case 40 :
-				a[0].zurueck();
-				c++;
-				break;
+
 			default:
-				Dialog.info("", ""+(int)t.aktuellesZeichen());
+//				Dialog.info("", ""+(int)t.aktuellesZeichen());
 				break;
 			}
 		}
 	}
 	
 	public void anim() {
-		if(c>=5) {
+		if(c>=2) {
 			if(c1==true) {
 				a[0].setzeBild("/basiX/images/crab2.png");
 				c1 = false;

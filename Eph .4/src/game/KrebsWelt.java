@@ -1,22 +1,27 @@
 package game;
 
-import basiX.*;
+import basiX.Dialog;
+import basiX.Hilfe;;
 
 public class KrebsWelt extends Welt {
 
-	private Krebs K1;
+	private Krebs K1,K2;
 	
 	public KrebsWelt() {
 		super(600, 600);
 		Dialog.info("Willkommen!", "Dieses Spiel wird Ihnen präsentiert von Till!");
-		prepare();
-	}
-
-
-	private void prepare() {
+		K1 = new Krebs('w','s','a','d');
+		K2 = new Krebs('i','k','j','l');
+		fuegeEin(K1, 100,100);
+		fuegeEin(K2, 250, 250);
+		int wn = Dialog.eingabeINT("", "Wieviele Würmer");
+		for(int i = 0;i<wn;i++) {
+			fuegeEin(new Worm(), Hilfe.zufall(0, 500), Hilfe.zufall(0, 500));
+		}
 		
-		K1 = new Krebs();
-		fuegeEin(K1, 150,150);
+		
+		
+		
 		
 	}
 
@@ -25,7 +30,7 @@ public class KrebsWelt extends Welt {
 		w = new KrebsWelt();
 		w.setzeHintergrund("/basiX/images/sand.jpg");
 		w.play();
-
 	}
+	
 
 }

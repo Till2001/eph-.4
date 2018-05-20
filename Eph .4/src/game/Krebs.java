@@ -3,16 +3,17 @@ import basiX.*;
 
 public class Krebs extends Akteur{
 	char o,u,l,r;
-	private int frame,fstate;
+	private int frame,fstate,ky1,ky2,kx1,kx2,score,n;
 	
-	
-	public Krebs(char po,char pu, char pl, char pr) {
+	public Krebs(char po,char pu, char pl, char pr,int nb) {
 		super();
 		o = po;
 		u = pu;
 		l = pl;
 		r = pr;
 		fstate = 0;
+		score = 0;
+		n = nb;
 		setzeBild("/basiX/images/crab.png");
 	}
 	
@@ -22,8 +23,30 @@ public class Krebs extends Akteur{
 		edge();
 		move();
 		framef();
+		test();
+		koll();
+		scorecheck();
 	}
-	
+
+
+
+
+	private void scorecheck() {
+		if(score==10) {
+			Dialog.info("Ende", "Der Spieler "+n+" hat gewonnen");
+		}
+	}
+
+
+	private void koll() {
+		if(kollision(Worm.class)) {
+			entferne(Worm.class);
+			score++;
+			
+		}
+	}
+
+
 	private void framef() {
 		if(frame>=5) {
 			if(fstate == 0) {
@@ -34,6 +57,14 @@ public class Krebs extends Akteur{
 				fstate = 0;
 			}
 			frame = 0;
+		}
+	}
+	
+	public void test() {
+		if(this.istGedrueckt('c')) {
+			this.setzePosition(250, 250);
+			Dialog.info("", ""+ky1+" + "+ky2);
+			Dialog.info("", ""+kx1+" + "+kx2);
 		}
 	}
 

@@ -19,7 +19,7 @@ public class Welt {
 		
 		// f.ladeBildInZeichenflaeche("/basiX/images/default.jpg");
 		t = new Tastatur();
-		a = new Akteur[100];
+		a = new Akteur[1500];
 		c = 0;
 	}
 
